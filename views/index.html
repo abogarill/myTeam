@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My Team</title>
+	<link rel="stylesheet" href="myTeam/scripts/jquery-ui.theme.min.css">
+	<script src="myTeam/scripts/external/jquery/jquery.js"></script>
+	<script src="myTeam/scripts/jquery-ui.js"></script>
+	<script>
+        function developers_list() {
+            var base_url = 'http://localhost:3000/myTeam';                
+            var response = "";
+            $.ajax({
+                type: "GET",
+                url: base_url + "/developers/list",
+                success: function (response) {
+                    var output = "<ul>";
+                    for (var i in response) {
+                        output += "<li>" + response[i].name + ",  " + response[i].project + "</li>";
+                    }
+                    output += "</ul>";
+
+                    $('#developers_list').html(output);
+                }   
+            });
+        }
+	</script>
+</head>
+<body>
+    
+    <h1>Test</h1>
+    <button id="list" onclick="developers_list();">Pulsa Aqui</button>
+    <div id="developers_list"></div>
+</body>
+</html>

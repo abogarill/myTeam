@@ -8,7 +8,7 @@ exports.test = function (req, res) {
 exports.developer_list = function (req, res, next) {
     Developer.find(function (err, developer) {
         if (err) return next(err);
-        res.send(developer);
+        res.json(developer);
     })
 };
 
@@ -31,7 +31,7 @@ exports.developer_create = function (req, res, next) {
 exports.developer_details = function (req, res, next) {
     Developer.findById(req.params.id, function (err, developer) {
         if (err) return next(err);
-        res.send(developer);
+        res.json(developer);
     })
 };
 

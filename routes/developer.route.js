@@ -11,8 +11,9 @@ router.get('/test', developer_controller.test);
 // Functions available
 router.get('/list', developer_controller.developer_list);
 router.post('/create', developer_controller.developer_create);
-router.get('/:id', developer_controller.developer_details);
+router.get('/detail/:id', developer_controller.developer_details);
 router.put('/:id/update', developer_controller.developer_update);
 router.delete('/:id/delete', developer_controller.developer_delete);
+
 
 module.exports = router;

@@ -5,12 +5,14 @@ const mongoose = require('mongoose');
 
 // Imports routes
 const developer = require('./routes/developer.route'); 
+const views = require('./routes/views.route'); 
 
 // initialize our express app
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use('/developers', developer);
+app.use('/myTeam/developers', developer);
+app.use('/', views);
 
 // Set up mongoose connection
 let dev_db_url = 'mongodb+srv://myteam:teammy@myteam-rbd2r.mongodb.net/test?retryWrites=true';
