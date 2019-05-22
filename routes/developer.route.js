@@ -13,7 +13,9 @@ router.get('/list', developer_controller.developer_list);
 router.post('/create', developer_controller.developer_create);
 router.get('/detail/:id', developer_controller.developer_details);
 router.put('/:id/update', developer_controller.developer_update);
+router.post('/update', developer_controller.developer_update_form);
 router.delete('/:id/delete', developer_controller.developer_delete);
+router.post('/delete', developer_controller.developer_delete_form);
 
 
 module.exports = router;

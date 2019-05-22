@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/scripts/jquery-ui.theme.min.css">
+	<script src="/scripts/external/jquery/jquery.js"></script>
+	<script src="/scripts/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css"/>
+	<script src="/assets/js/bootstrap.js"></script>	
+	<title>Developers</title>
+	
+	<script>
+		$(document).ready(function () {
+			//showing data to edit modal      
+			$('#mytable').on('click', '.edit', function () {
+				var _id = $(this).data('id');
+				var name = $(this).data('name');
+				var project = $(this).data('project');
+				$('#EditModal').modal('show');
+				$('.name').val(name);
+				$('.price').val(project);
+				$('._id').val(_id);
+			});
+			//showing delete record modal
+			$('#mytable').on('click', '.delete', function () {
+				var _id = $(this).data('id');
+				$('#DeleteModal').modal('show');
+				$('._id2').val(_id);
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<h1>Developers</h1>
+	<div class="container">
+		<h2>Developer List</h2>
+		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add New</button>
+		<table class="table table-striped" id="mytable">
+			<thead>
+				<tr>
+					<th>Developer ID</th>
+					<th>Name</th>
+					<th>Project</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each developer}}
+				<tr>
+					<td>{{ _id }}</td>
+					<td>{{ name }}</td>
+					<td>{{ project }}</td>
+					<td>
+						<a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-id="{{ _id }}"
+							data-name="{{ name }}" data-project="{{ project }}">Edit</a>
+						<a href="javascript:void(0);" class="btn btn-sm btn-danger delete"
+							data-id="{{ _id }}">Delete</a>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+	
+	<!-- Modal Add Developer-->
+	<form action="create" method="post">
+		<div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Add New Developer</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="text" name="name" class="form-control" placeholder="Name" required>
+						</div>
+	
+						<div class="form-group">
+							<input type="text" name="project" class="form-control" placeholder="Project" required>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<!-- Modal Update Developer-->
+	<form action="update" method="post">
+		<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Edit Developer</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="text" name="name" class="form-control name"
+								placeholder="Name" required>
+						</div>
+	
+						<div class="form-group">
+							<input type="text" name="project" class="form-control price" placeholder="Project" required>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" name="id" class="_id">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Update</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<!-- Modal Delete Developer-->
+	<form id="add-row-form" action="delete" method="post">
+		<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="myModalLabel">Delete Developer</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+								aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<strong>Are you sure to delete this data?</strong>
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" name="id" class="form-control _id2" required>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-success">Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
